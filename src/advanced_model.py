@@ -55,3 +55,10 @@ xgb_predictions = xgb_model.predict(X_test)
 xgb_mae = mean_absolute_error(y_test, xgb_predictions)
 
 print(f"XGBoost MAE: {xgb_mae:.2f} cycles")
+
+# Check which features mattered most to XGBoost
+importances = pd.Series(xgb_model.feature_importances_, index=feature_cols)
+top_features = importances.sort_values(ascending=False).head(10)
+
+print("Top 10 most important features:")
+print(top_features)
